@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, abort, make_response
 
 cat_bp = Blueprint("cat", __name__,url_prefix="/cats")
 
@@ -27,10 +27,10 @@ def handle_cat(cat_id):
     try:
         cat_id = int(cat_id)
     except:
-        return "Bad data", 400
+        return abort(make_response({"message": f"Cat {cat_id} invalid"}, 400))
 
     for cat in cats:
         if cat.id == cat_id:
             return vars(cat)
             
-    return "Not found", 404
+    return abort(make_response({"message": f" Cat {cat_id} Not found"}, 404))

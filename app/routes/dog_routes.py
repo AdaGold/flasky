@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, abort, make_response
 
 dog_bp = Blueprint("dog", __name__,url_prefix="/dogs")
 
@@ -8,12 +8,12 @@ class Dog:
         self.name = name
         self.breed = breed
         if not tricks:
-            tricks = []
+            self.tricks = []
         self.tricks = tricks
 
     def to_json(self):
         if not self.tricks:
-            tricks = "No Tricks"
+            tricks = []
         else:
             tricks = self.tricks
 
@@ -62,4 +62,4 @@ def handle_dog(dog_id):
             # }
             return dog.to_json()
 
-    return {"error": "Dog not found"}, 404
+    return abort(make_response({"message": f"Dog {dog_id} Not found"}, 404))
