@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from dotenv import load_dotenv
-
+from flask_cors import CORS
 import os
 
 load_dotenv()
@@ -14,6 +14,8 @@ migrate = Migrate()
 def create_app(test_config=None):
     # __name__ store the name of the module we're in
     app = Flask(__name__)
+    CORS(app)
+    app.config['CORS_HEADERS'] = 'Content-Type'
 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
