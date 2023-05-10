@@ -16,4 +16,3 @@ services:
 
 databases: # Render PostgreSQL database
   - name: postgresql-elliptical-86409
-    ipAllowList: [] # only allow internal connections
