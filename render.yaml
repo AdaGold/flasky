@@ -9,9 +9,6 @@ services:
     plan: free # optional; defaults to starter
     numInstances: 1
     envVars:
-      - key: DEV_DB # Imported from Heroku app
-        value: postgres://cdbbharnfiqppk:b23593abb3c4b0d1e3e8b1bce7d906aa02cb2748df040c6de85d0c9921023da3@ec2-54-174-15-122.compute-1.amazonaws.com:5432/d47bg94vn3o7t9
-      - key: DATABASE_URL # Render PostgreSQL database
         fromDatabase:
           name: postgresql-elliptical-86409
           property: connectionString
