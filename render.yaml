@@ -9,6 +9,7 @@ services:
     plan: free # optional; defaults to starter
     numInstances: 1
     envVars:
+      - key: DEV_DB
         fromDatabase:
           name: postgresql-elliptical-86409
           property: connectionString
